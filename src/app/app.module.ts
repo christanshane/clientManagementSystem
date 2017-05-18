@@ -3,19 +3,21 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FirebaseService } from './services/firebase.service';
 
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth, AngularFireAuthProvider } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { EmailComponent } from './email/email.component';
 import { MembersComponent } from './members/members.component';
 
 import { AuthService } from './auth.service';
 import { routes } from './app.routes';
 import { AddUserComponent } from './add-user/add-user.component';
+import { UsersComponent } from './users/users.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 export const firebaseConfig ={
     apiKey: "AIzaSyCDjtlhDGePZgb-zN_YCHTmGXt28POOCdI",
@@ -28,10 +30,11 @@ export const firebaseConfig ={
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     EmailComponent,
     MembersComponent,
-    AddUserComponent
+    AddUserComponent,
+    UsersComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +42,9 @@ export const firebaseConfig ={
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
     routes,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
-  providers: [AuthService, AngularFireAuth],
+  providers: [AuthService, AngularFireAuth, FirebaseService, AngularFireDatabase],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

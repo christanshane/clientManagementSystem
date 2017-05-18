@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
+import { FirebaseService } from '../services/firebase.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-add-user',
@@ -12,7 +14,11 @@ export class AddUserComponent implements OnInit {
   state: string='';
   error: any;
 
-  constructor(public afAuth:AngularFireAuth, private router:Router) { 
+  companyname:any;
+  email:any;
+  password:any;
+
+  constructor(public afAuth:AngularFireAuth, private router:Router, private firebaseService: FirebaseService) { 
     this.afAuth.authState.subscribe(auth =>{
       if(auth){
         this.name = auth.email;
@@ -22,12 +28,19 @@ export class AddUserComponent implements OnInit {
   }
 
   onSubmit(formData) {
+    let user = {
+      companyname: formData.value.email,
+      email: formData.value.email,
+      password: formData.value.password
+    }
+    console.log(user);
+    this.firebaseService.addUser(user);
     if(formData.valid) {
       console.log(formData.value);
-      this.afAuth.auth.createUserWithEmailAndPassword(formData.value.email,formData.value.password).then(
+      this.afAuth.auth.createUserWithEmailAndPassword(user.email,user.password).then(
         (success) => {
         console.log(success);
-        this.router.navigate(['/login'])
+        this.router.navigate(['/members'])
       }).catch(
         (err) => {
         console.log(err);
