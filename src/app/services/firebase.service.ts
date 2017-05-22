@@ -22,5 +22,5 @@ export class FirebaseService {
 interface Users {
   companyname?:any;
   email?:any;
-  password?:any;
+  role?:any;
 }

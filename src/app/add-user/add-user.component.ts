@@ -29,15 +29,15 @@ export class AddUserComponent implements OnInit {
 
   onSubmit(formData) {
     let user = {
-      companyname: formData.value.email,
+      companyname: formData.value.companyname,
       email: formData.value.email,
-      password: formData.value.password
+      role: formData.value.role
     }
     console.log(user);
     this.firebaseService.addUser(user);
     if(formData.valid) {
       console.log(formData.value);
-      this.afAuth.auth.createUserWithEmailAndPassword(user.email,user.password).then(
+      this.afAuth.auth.createUserWithEmailAndPassword(formData.value.email,formData.value.password).then(
         (success) => {
         console.log(success);
         this.router.navigate(['/members'])
