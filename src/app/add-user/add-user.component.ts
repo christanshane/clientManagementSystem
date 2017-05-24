@@ -36,6 +36,7 @@ export class AddUserComponent implements OnInit {
     console.log(user);
     this.firebaseService.addUser(user);
     if(formData.valid) {
+
       console.log(formData.value);
       this.afAuth.auth.createUserWithEmailAndPassword(formData.value.email,formData.value.password).then(
         (success) => {

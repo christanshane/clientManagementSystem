@@ -14,7 +14,6 @@ export class NavbarComponent implements OnInit {
     this.afAuth.authState.subscribe(auth =>{
       if(auth){
         this.name = auth.email;
-        console.log(auth.email);
       }
     });
   }

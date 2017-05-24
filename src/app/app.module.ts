@@ -18,6 +18,7 @@ import { routes } from './app.routes';
 import { AddUserComponent } from './add-user/add-user.component';
 import { UsersComponent } from './users/users.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ClientDashboardComponent } from './client-dashboard/client-dashboard.component';
 
 export const firebaseConfig ={
     apiKey: "AIzaSyCDjtlhDGePZgb-zN_YCHTmGXt28POOCdI",
@@ -34,7 +35,8 @@ export const firebaseConfig ={
     MembersComponent,
     AddUserComponent,
     UsersComponent,
-    NavbarComponent
+    NavbarComponent,
+    ClientDashboardComponent
   ],
   imports: [
     BrowserModule,
