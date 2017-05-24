@@ -14,13 +14,17 @@ export class MembersComponent implements OnInit {
   name:any;
   state: string='';
 
+  user:any;
   constructor(public afAuth:AngularFireAuth,
   private router:Router,
   private firebaseService:FirebaseService
   ) { 
     this.afAuth.authState.subscribe(auth =>{
       if(auth){
-        this.name = auth.email;
+        this.firebaseService.getUsers(this.afAuth.auth.currentUser.uid).subscribe(user =>{
+        this.user = user;
+        this.name = this.user[0].companyname;
+        })
       }
     });
   }

@@ -27,9 +27,7 @@ export class EmailComponent implements OnInit {
     if(formData.valid){
       this.afAuth.auth.signInWithEmailAndPassword(formData.value.email,formData.value.password).then(
         (success) => {
-          let userDetails = this.firebaseService.getUserDetails(formData.value.email);
-          console.log(userDetails+" Show me this");
-          // console.log('success');
+          console.log('success');
           this.router.navigate(['/members']);
         }).catch(
         (err) =>{
